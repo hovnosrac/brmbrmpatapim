@@ -119,29 +119,47 @@
   <title>Odpočet do 20. května</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 100px;
-      background-color: #000000; /* Volitelně černé pozadí pro kontrast */
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background-color: #000000;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
     }
+
     #countdown {
       font-size: 2em;
-      color: #FFFFFF;
       opacity: 0;
       transition: opacity 2s ease-in-out;
+
+      /* Fixní pozice nahoře uprostřed */
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.6);
+      padding: 10px 20px;
+      border-radius: 10px;
+      z-index: 9999;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 150px;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
     }
   </style>
 </head>
 <body>
   <h1>Odpočet do 20. května</h1>
-  <div id="countdown">Načítání...</div>
+  <div id="countdown">počkej chvilku</div>
 
   <script>
     const targetDate = new Date("May 20, 2025 00:00:00").getTime();
     const countdown = document.getElementById("countdown");
 
     setTimeout(() => {
-      countdown.style.opacity = "1"; // Pomalu zobrazit
+      countdown.style.opacity = "1";
 
       const timer = setInterval(() => {
         const now = new Date().getTime();
@@ -149,7 +167,7 @@
 
         if (distance < 0) {
           clearInterval(timer);
-          countdown.innerHTML = "Čas vypršel!";
+          countdown.innerHTML = "DROP!";
           return;
         }
 
@@ -160,7 +178,8 @@
 
         countdown.innerHTML = `${days} dnů ${hours} hodin ${minutes} minut ${seconds} sekund`;
       }, 1000);
-    }, 2000); // Zpoždění 2 sekundy
+    }, 2000);
   </script>
 </body>
 </html>
+
