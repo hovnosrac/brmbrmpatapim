@@ -105,3 +105,52 @@
     <h4>shoutout vojta blee</h4>
 </body>
 </html>
+
+
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <title>Odpočet do 20. května</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+    #countdown {
+      font-size: 2em;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Odpočet do 20. května</h1>
+  <div id="countdown"></div>
+
+  <script>
+    // Nastav cílové datum (20. května, změň rok podle potřeby)
+    const targetDate = new Date("May 20, 2025 00:00:00").getTime();
+
+    const countdown = document.getElementById("countdown");
+
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        clearInterval(timer);
+        countdown.innerHTML = "Čas vypršel!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `${days} dnů ${hours} hodin ${minutes} minut ${seconds} sekund`;
+    }, 1000);
+  </script>
+</body>
+</html>
