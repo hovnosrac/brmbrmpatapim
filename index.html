@@ -122,40 +122,45 @@
       font-family: Arial, sans-serif;
       text-align: center;
       margin-top: 100px;
+      background-color: #000000; /* Volitelně černé pozadí pro kontrast */
     }
     #countdown {
       font-size: 2em;
-      color: 	#FFFFFF;
+      color: #FFFFFF;
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
     }
   </style>
 </head>
 <body>
   <h1>Odpočet do 20. května</h1>
-  <div id="countdown"></div>
+  <div id="countdown">Načítání...</div>
 
   <script>
-    // Nastav cílové datum (20. května, změň rok podle potřeby)
     const targetDate = new Date("May 20, 2025 00:00:00").getTime();
-
     const countdown = document.getElementById("countdown");
 
-    const timer = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
+    setTimeout(() => {
+      countdown.style.opacity = "1"; // Pomalu zobrazit
 
-      if (distance < 0) {
-        clearInterval(timer);
-        countdown.innerHTML = "Čas vypršel!";
-        return;
-      }
+      const timer = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        if (distance < 0) {
+          clearInterval(timer);
+          countdown.innerHTML = "Čas vypršel!";
+          return;
+        }
 
-      countdown.innerHTML = `${days} dnů ${hours} hodin ${minutes} minut ${seconds} sekund`;
-    }, 1000);
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdown.innerHTML = `${days} dnů ${hours} hodin ${minutes} minut ${seconds} sekund`;
+      }, 1000);
+    }, 2000); // Zpoždění 2 sekundy
   </script>
 </body>
 </html>
